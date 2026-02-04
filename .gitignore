@@ -19,6 +19,7 @@ random.py
 !datasets/targets/README.md
 !datasources/README.md
 !models/raw/README.md
+!models/raw/yolo11n-obb-stn.yaml
 !models/trained/README.md
 !notebooks/README.md
 !runs/test/README.md
