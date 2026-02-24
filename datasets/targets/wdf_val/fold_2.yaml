@@ -1,0 +1,7 @@
+path: datasets
+
+train: images/wdf_val/fold_2/train
+val: images/wdf_val/fold_2/val
+
+names:
+  0: person

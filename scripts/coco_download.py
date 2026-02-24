@@ -1,16 +1,15 @@
 from pathlib import Path
+from ultralytics.utils import ASSETS_URL
 from ultralytics.utils.downloads import download
 
 # Download labels
 segments = False  # segment or box labels
-dir = Path("./coco")  # dataset root dir
-url = "https://github.com/ultralytics/assets/releases/download/v0.0.0/"
-urls = [url + ("coco2017labels-segments.zip" if segments else "coco2017labels.zip")]  # labels
-download(urls, dir=dir.parent)
+dir = Path("./datasources/COCO2017")  # dataset root dir
+urls = [ASSETS_URL + ("/coco2017labels-segments.zip" if segments else "/coco2017labels.zip")]  # labels
+download(urls, dir=dir)
 # Download data
-urls = [
-    "http://images.cocodataset.org/zips/train2017.zip",  # 19G, 118k images
-    "http://images.cocodataset.org/zips/val2017.zip",  # 1G, 5k images
-    "http://images.cocodataset.org/zips/test2017.zip",  # 7G, 41k images (optional)
-]
-download(urls, dir=dir / "images", threads=3)
+# urls = [
+#     "http://images.cocodataset.org/zips/train2017.zip",  # 19G, 118k images
+#     "http://images.cocodataset.org/zips/val2017.zip"  # 1G, 5k images
+# ]
+# download(urls, dir=dir / "images", threads=3)

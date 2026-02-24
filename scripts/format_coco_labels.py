@@ -33,7 +33,7 @@ def write_labels(data):
         tqdm.write('-' * 100)
 
 if __name__ == '__main__':
-    source_path = os.path.join("datasources", "COCO")
+    source_path = os.path.normpath("datasources/COCO2017/annotations")
     dataset_labels_source = os.path.normpath("datasets/labels/coco_2017")
     dataset_images_source = os.path.normpath("datasets/images/coco_2017")
     set_list = sorted(os.listdir(source_path))

@@ -1,16 +1,13 @@
 .projenv
 *__pycache__*
+weights/
 
 datasets/images/*
 datasets/labels/*
-datasets/targets/*
 datasources/*
-models/raw/*
-models/trained/*
-notebooks/*
-runs/test/*
-runs/train/*
+models/source/*
 yolo11n.pt
+yolo26n.pt
 random.py
 .env
 

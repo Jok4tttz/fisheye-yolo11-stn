@@ -133,19 +133,22 @@ def reformat_annotation(elements, frame_width, frame_height, object_class = 0):
     center_x, center_y = elements[:2]
     angle = elements[-1]
 
-    if angle > 0 and angle < 90:
-        width, height = elements[2:4]
-    else:
-        height, width = elements[2:4]
+    # if angle > 0 and angle < 90:
+    #     width, height = elements[2:4]
+    # else:
+    #     height, width = elements[2:4]
     
+    width, height = elements[2:4]
     angle = math.radians(angle)
     new_elements = calculate_coordinates(center_x, center_y, width, height, angle)
-                    
-    for index in range(len(new_elements)):
-        if index % 2 == 0:
-            new_elements[index] /= frame_width
-        else:
-            new_elements[index] /= frame_height
+
+    if any(element > 1 for element in new_elements):
+        # print("TESTTTTT")              
+        for index in range(len(new_elements)):
+            if index % 2 == 0:
+                new_elements[index] /= frame_width
+            else:
+                new_elements[index] /= frame_height
     
     new_annotation = ' '.join(map(str, base + new_elements))
     return new_annotation

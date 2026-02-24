@@ -18,14 +18,18 @@ if __name__ == '__main__':
     # Parameters Initialization
     source_dir = "WEPDTOF"
     dataset_root = os.path.normpath("datasets")
-    dataset_dir = os.path.join("cv2f_test_100", "fold_2")
+    # dataset_dir = os.path.normpath("hbcd_train")
+    dataset_dir = os.path.join("wdf_test", "fold_2")
+    # target_set = "train"
     target_set = "train"
+    # ROI_dir = None
     ROI_dir = "ROI_maps"
+    # cross_set = None
     # cross_set = [
     #     "empty_store",
     #     "exhibition_setup",
     #     "convenience_store",
-    #     "large_office",
+    #     "large_office",1
     #     "large_office_2",
     #     "warehouse",
     #     "exhibition",
@@ -43,6 +47,8 @@ if __name__ == '__main__':
     ]
     split = 0
     clean = False
+    # clean = True
+
 
     # Convert JSON Annotations to Pandas DataFrame
     source_path = os.path.join("datasources", source_dir)

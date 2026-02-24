@@ -1,0 +1,7 @@
+path: datasets
+
+train: images/hbcd_train/train
+val: images/hbcd_train/train
+
+names:
+  0: person

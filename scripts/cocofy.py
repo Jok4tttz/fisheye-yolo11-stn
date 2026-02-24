@@ -65,6 +65,74 @@ def reformat_HABBOF(source_path):
     
     print("All JSON files were succesfully created!")
 
+def reformat_ultralytics_COCO(source_path):
+    json_dict = {}
+    annotations_path = os.path.join(source_path, "annotations")
+    type_list = sorted(os.listdir(source_path))
+
+    for type in type_list:
+        type_path = os.path.join(source_path, type)
+        split_list = sorted(os.listdir(type_path))
+
+        for split in split_list:
+            split_path = os.path.join(type_path, split)
+            # json_path = os.path.join(annotations_path, f"{sequence}.json")
+            json_file = f"{split}.json"
+
+            frame_list = sorted(os.listdir(split_path))
+            annotations_list = []
+            images_list = []
+
+            print(f"Creating {split}.json...")
+            for file_name in tqdm(frame_list):
+                file_path = os.path.join(split_path, file_name)
+
+                if ".jpg" in file_name:
+                    image = Image.open(file_path)
+                    image_dict = {
+                        "file_name" : file_name,
+                        "id" : os.path.splitext(file_name)[0],
+                        "width" : image.width,
+                        "height" : image.height
+                    }
+                    images_list.append(image_dict)
+
+                if ".txt" in file_name:
+                    with open(file_path, 'r') as bb_list:
+                        person_id = 1
+                        for line in bb_list:
+                            bb = [float(value) for value in line.split()[1:]]
+                            annotation_dict = {
+                                "area" : bb[2] * bb[3],
+                                "bbox" : bb,
+                                "category_id" : 1,
+                                "image_id" : os.path.splitext(file_name)[0],
+                                "is_crowd" : 0,
+                                "segmentation" : [],
+                                "person_id" : person_id
+                            }
+                            annotations_list.append(annotation_dict)
+                            person_id += 1
+
+            json_dict[json_file] =  
+        data_dump = {
+            "annotations" : annotations_list,
+            "images" : images_list,
+            "category" : [
+                {
+                    "id" : 1,
+                    "name" : "person",
+                    "supercategory" : "person"
+                }
+            ]
+        }
+        
+        with open(json_path, 'w') as json_file:
+            json.dump(data_dump, json_file, indent = 4)
+        print("---------------------------------------------")
+    
+    print("All JSON files were succesfully created!")
+
 if __name__ == "__main__":
     source_dir = "HABBOF"
     source_path = os.path.join("./datasources/", source_dir)
